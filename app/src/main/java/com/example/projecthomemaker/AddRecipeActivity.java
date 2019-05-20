@@ -11,7 +11,6 @@ import android.widget.EditText;
 public class AddRecipeActivity extends AppCompatActivity {
     EditText etName, etStarRating, etCostRating, etFeeds, etCategory, etIngredientList, etDirections;
     String name,category,ingredientList,directions,starRating, costRating, feeds;
-    int id;
     Button saveButton;
     Context context;
 

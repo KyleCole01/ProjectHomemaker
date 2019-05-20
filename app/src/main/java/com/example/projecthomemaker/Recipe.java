@@ -1,10 +1,18 @@
 package com.example.projecthomemaker;
 
+import android.graphics.Bitmap;
+import android.media.Image;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class Recipe implements Serializable {
     private int id;
     private String name, directions, ingredientList,category, favorite,starRating, costRating, feedPerBatch;
+    private String imageUrl, sourceUrl;
+    private Bitmap imageBitmap;
 
     public String getFavorite() {
         return favorite;
@@ -22,6 +30,41 @@ public class Recipe implements Serializable {
         this.directions = directions;
         this.ingredientList = ingredientList;
         this.category = category;
+    }
+
+    public Bitmap getImageBitmap() {
+                return imageBitmap;
+    }
+
+    public void setImageBitmap(Bitmap imageBitmap) {
+        this.imageBitmap = imageBitmap;
+    }
+
+    public Recipe(JSONObject json){
+        try{
+            this.name = json.getString("title");
+            this.sourceUrl = json.getString("source_url");
+            this.imageUrl = json.getString("image_url");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public void setSourceUrl(String sourceUrl) {
+        this.sourceUrl = sourceUrl;
     }
 
     public String getStarRating() {

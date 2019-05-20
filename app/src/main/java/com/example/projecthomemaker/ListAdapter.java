@@ -1,11 +1,13 @@
 package com.example.projecthomemaker;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,8 +33,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
         final Recipe data = entryData.get(i);
         sampleViewHolder.listTitleView.setText(data.getName());
         sampleViewHolder.listRatingView.setText(data.getStarRating());
+        if(data.getImageBitmap() != null){
+            sampleViewHolder.listItemImage.setImageBitmap(data.getImageBitmap());
+        }
 
-        //reiterate all this through the object to place your items (image,names,id, etc.)
+
+
+               //reiterate all this through the object to place your items (image,names,id, etc.)
         sampleViewHolder.parentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,11 +64,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
 
         TextView listTitleView, listRatingView;
         View parentView;
+        ImageView listItemImage;
         //bind the datamembers of our viewholder to the items in the layout
         public SampleViewHolder(@NonNull View itemView) {
             super(itemView);
             listTitleView = itemView.findViewById(R.id.list_item_title);
             listRatingView = itemView.findViewById(R.id.list_item_rating);
+            listItemImage = itemView.findViewById(R.id.list_item_image);
             parentView = itemView.findViewById(R.id.parent_list_layout);
         }
     }

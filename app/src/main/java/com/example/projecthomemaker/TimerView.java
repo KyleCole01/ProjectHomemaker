@@ -32,13 +32,30 @@ public class TimerView extends View {
         timerPaint.setColor(Color.CYAN);
         timerPaint.setAntiAlias(true);
         timerLinePaint.setColor(Color.BLACK);
+        timerLinePaint.setStrokeWidth(10);
+
 
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/4,timerPaint);
         canvas.drawLine(getWidth()/2,getHeight()/2,getWidth()/2,getHeight()/2,timerLinePaint);
+
+
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                    canvas.rotate(180);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
