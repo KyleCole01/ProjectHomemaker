@@ -2,6 +2,7 @@ package com.example.projecthomemaker;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -114,5 +115,7 @@ public class NetworkAdapter {
         }
         return result;
     }
+
+
 
 }

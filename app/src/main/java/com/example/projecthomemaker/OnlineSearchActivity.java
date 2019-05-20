@@ -35,27 +35,23 @@ public class OnlineSearchActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         onlineRecipes = OnlineRecipeSearch.searchRecipes(searchText.getText().toString());
-                        for(int i = 0; i <onlineRecipes.size();++i){
-                            Recipe temp = onlineRecipes.get(i);
-                            Bitmap tempmap = NetworkAdapter.getBitmapFromURL(temp.getImageUrl());
-                            temp.setImageBitmap(tempmap);
-                        }
-                       runOnUiThread(new Runnable() {
-                           @Override
-                           public void run() {
-                               searchListAdapter = new ListAdapter(onlineRecipes);
-                               RecyclerView recyclerView = findViewById(R.id.online_search_recycler_view);
-                               recyclerView.setAdapter(searchListAdapter);
-                               LinearLayoutManager sampleLayoutManager = new LinearLayoutManager(context);
-                               recyclerView.setLayoutManager(sampleLayoutManager);
-                           }
-                       });
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                searchListAdapter = new ListAdapter(onlineRecipes);
+                                RecyclerView recyclerView = findViewById(R.id.online_search_recycler_view);
+                                recyclerView.setAdapter(searchListAdapter);
+                                LinearLayoutManager sampleLayoutManager = new LinearLayoutManager(context);
+                                recyclerView.setLayoutManager(sampleLayoutManager);
+                            }
+                        });
 
                     }
                 }).start();
 
             }
         });
+
 
 
 

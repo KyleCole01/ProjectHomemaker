@@ -1,6 +1,6 @@
 package com.example.projecthomemaker;
 
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 import org.json.JSONException;
@@ -12,7 +12,7 @@ public class Recipe implements Serializable {
     private int id;
     private String name, directions, ingredientList,category, favorite,starRating, costRating, feedPerBatch;
     private String imageUrl, sourceUrl;
-    private Bitmap imageBitmap;
+    private Drawable imageDrawable;
 
     public String getFavorite() {
         return favorite;
@@ -32,12 +32,12 @@ public class Recipe implements Serializable {
         this.category = category;
     }
 
-    public Bitmap getImageBitmap() {
-                return imageBitmap;
+    public Drawable getImageDrawable() {
+                return imageDrawable;
     }
 
-    public void setImageBitmap(Bitmap imageBitmap) {
-        this.imageBitmap = imageBitmap;
+    public void setImageDrawable(Drawable imageDrawable) {
+        this.imageDrawable = imageDrawable;
     }
 
     public Recipe(JSONObject json){

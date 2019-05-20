@@ -2,7 +2,9 @@ package com.example.projecthomemaker;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,8 +35,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
         final Recipe data = entryData.get(i);
         sampleViewHolder.listTitleView.setText(data.getName());
         sampleViewHolder.listRatingView.setText(data.getStarRating());
-        if(data.getImageBitmap() != null){
-            sampleViewHolder.listItemImage.setImageBitmap(data.getImageBitmap());
+        Drawable drawable = data.getImageDrawable();
+        if(drawable != null){
+            sampleViewHolder.listItemImage.setImageDrawable(drawable);
         }
 
 
