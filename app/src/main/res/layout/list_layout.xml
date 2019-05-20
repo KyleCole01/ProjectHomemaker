@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_list_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/list_item_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:src="@drawable/ic_local_dining_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/list_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:paddingStart="20sp"
+        android:layout_marginEnd="8dp"
+        android:text="placeholder title"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/list_item_image"
+        app:layout_constraintStart_toEndOf="@+id/list_item_image"
+        app:layout_constraintTop_toTopOf="@+id/list_item_image" />
+    <TextView
+        android:id="@+id/list_item_rating"
+        android:text="3"
+        android:textSize="30sp"
+        android:paddingStart="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/list_item_title"
+        app:layout_constraintBottom_toBottomOf="@id/list_item_title"
+        app:layout_constraintStart_toEndOf="@id/list_item_title"/>
+
+</android.support.constraint.ConstraintLayout>
