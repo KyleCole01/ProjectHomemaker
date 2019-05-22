@@ -82,7 +82,7 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkRecipe();
+//                checkRecipe();
 
                 name = etName.getText().toString();
                 ingredientList = etIngredientList.getText().toString();
