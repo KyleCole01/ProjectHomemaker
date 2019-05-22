@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -81,6 +82,12 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //TODO: CHECK for valid recipe
+                    }
+                },2000);
 
                 name = etName.getText().toString();
                 ingredientList = etIngredientList.getText().toString();
