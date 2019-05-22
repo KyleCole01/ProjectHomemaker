@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton button;
+    ImageButton button,mapButton;
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         context = this;
         RecipeDbDao.initializeInstance(this);
         button = findViewById(R.id.button_recipelist);
+        mapButton = findViewById(R.id.button_map);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -24,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 //                public Recipe(String name, String category, int starRating, int feedPerBatch,int costRating,String ingredientList,String directions)
 
+            }
+        });
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mapIntent = new Intent(context, MapsActivity.class);
+                startActivity(mapIntent);
             }
         });
     }

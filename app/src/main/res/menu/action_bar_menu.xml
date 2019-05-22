@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+            android:id="@+id/center_map"
+            android:title="Center Map on Location"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_center_focus_weak_black_24dp"/>
+        <item
+                android:id="@+id/place_pin"
+                android:title="Place Pin"
+                app:showAsAction="ifRoom"
+                android:icon="@drawable/ic_pin_drop_black_24dp"/>
+        <item
+                android:id="@+id/remove_pin"
+                android:title="Remove current pin"
+                android:icon="@drawable/ic_remove_black_24dp"
+                app:showAsAction="ifRoom"
+            />
+
+
+</menu>
