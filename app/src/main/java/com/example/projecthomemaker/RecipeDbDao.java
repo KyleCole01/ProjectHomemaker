@@ -2,6 +2,7 @@ package com.example.projecthomemaker;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -36,8 +37,7 @@ public class RecipeDbDao {
         }
     }
     public static ArrayList<Recipe> readAllRecipes(){
-        ArrayList<Recipe> recipeList = new ArrayList<>();
-       /* String getRecipes = String.format("SELECT * FROM %s;",RecipeDbContract.RecipeEntry.TABLE_NAME);
+        String getRecipes = String.format("SELECT * FROM %s;",RecipeDbContract.RecipeEntry.TABLE_NAME);
         Cursor cursor = db.rawQuery(getRecipes,null);
         int index;
         ArrayList<Recipe> recipeList = new ArrayList<>();
@@ -58,16 +58,16 @@ public class RecipeDbDao {
             String directions = cursor.getString(index);
             index = cursor.getColumnIndexOrThrow(RecipeDbContract.RecipeEntry.COLUMN_FAVORITES);
             String favorite = cursor.getString(index);
-            //                 public Recipe(String name, String category, int starRating, int feedPerBatch, int costRating, String ingredientList, String directions)
 
+            //                 public Recipe(String name, String category, int starRating, int feedPerBatch, int costRating, String ingredientList, String directions)
             Recipe recipe = new Recipe(name, category, starRating, feedPerBatch, costRating, ingredientList, directions);
 
             recipeList.add(recipe);
         }
-        cursor.close();*/
+        cursor.close();
 
-
-        recipeList.add(new Recipe("Test Chicken 1","Dinner","3","2","4","chicken and ", "cook"));
+        //initial mock data
+/*        recipeList.add(new Recipe("Test Chicken 1","Dinner","3","2","4","chicken and ", "cook"));
         recipeList.add(new Recipe("Test Chicken 2","Dinner","3","2","4","chicken and ", "cook"));
         recipeList.add(new Recipe("Test Chicken 3","Dinner","3","2","4","chicken and ", "cook"));
         recipeList.add(new Recipe("Test Chicken 4","Dinner","3","2","4","chicken and ", "cook"));
@@ -86,6 +86,7 @@ public class RecipeDbDao {
         recipeList.add(new Recipe("Test Chicken 17","Dinner","3","2","4","chicken and ", "cook"));
         recipeList.add(new Recipe("Test Chicken 18","Dinner","3","2","4","chicken and ", "cook"));
         recipeList.add(new Recipe("Test Chicken 19","Dinner","3","2","4","chicken and ", "cook"));
+        */
         return recipeList;
 
     }

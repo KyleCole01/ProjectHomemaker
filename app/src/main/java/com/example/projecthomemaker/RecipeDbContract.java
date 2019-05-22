@@ -20,11 +20,12 @@ public class RecipeDbContract implements BaseColumns {
                 COLUMN_NAME + " TEXT, " +
                 COLUMN_CATEGORY + " TEXT, " +
                 COLUMN_STAR_RATING + " TEXT," +
-                COLUMN_FEED_PER_BATCH + " TEXT," +
+                COLUMN_FEED_PER_BATCH + " TEXT, " +
                 COLUMN_COST_RATING + " TEXT," +
-                COLUMN_INGREDIENT_LIST + " TEXT," +
-                COLUMN_DIRECTIONS + " TEXT," +
-                COLUMN_FAVORITES + " TEXT);";
+                COLUMN_INGREDIENT_LIST + " TEXT, " +
+                COLUMN_DIRECTIONS + " TEXT, " +
+                COLUMN_FAVORITES + " TEXT); ";
+
         public final static String SQL_DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
     }
 }

@@ -6,23 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".AddRecipeActivity">
 
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".AddRecipeActivity">
 
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/nr_imageview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200sp"
+            android:layout_height="200sp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:clickable="true"
             android:src="@drawable/a_link_to_the_future"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />-->
 
         <EditText
             android:id="@+id/et_name"
@@ -31,11 +33,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:gravity="center"
             android:hint="Enter name of Dish"
             android:padding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nr_imageview" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <EditText
             android:id="@+id/et_star_rating"
@@ -44,11 +47,22 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:hint="How many stars"
+            android:hint="3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.111"
+            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Stars"
+            app:layout_constraintBottom_toBottomOf="@+id/et_star_rating"
+            app:layout_constraintEnd_toStartOf="@+id/et_star_rating"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_star_rating" />
 
         <EditText
             android:id="@+id/et_cost_rating"
@@ -56,55 +70,98 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:hint="how many $$$"
+            android:hint="$$$"
             app:layout_constraintBottom_toBottomOf="@+id/et_star_rating"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.704"
             app:layout_constraintStart_toEndOf="@+id/et_star_rating"
-            app:layout_constraintTop_toTopOf="@+id/et_star_rating" />
+            app:layout_constraintTop_toTopOf="@+id/et_star_rating"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Cost"
+            app:layout_constraintBottom_toBottomOf="@+id/et_cost_rating"
+            app:layout_constraintEnd_toStartOf="@+id/et_cost_rating"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/et_star_rating"
+            app:layout_constraintTop_toTopOf="@+id/et_cost_rating" />
 
         <EditText
             android:id="@+id/et_feeds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="feeds ?"
+            android:hint="3"
             app:layout_constraintEnd_toEndOf="@+id/et_cost_rating"
             app:layout_constraintStart_toStartOf="@+id/et_cost_rating"
             app:layout_constraintTop_toBottomOf="@+id/et_cost_rating" />
 
-        <EditText
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Serves"
+            app:layout_constraintBottom_toBottomOf="@+id/et_feeds"
+            app:layout_constraintEnd_toStartOf="@+id/et_feeds"
+            app:layout_constraintTop_toTopOf="@+id/et_feeds" />
+
+        <Spinner
             android:id="@+id/et_category"
+            android:spinnerMode="dialog"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="category"
             app:layout_constraintEnd_toEndOf="@+id/et_star_rating"
             app:layout_constraintStart_toStartOf="@+id/et_star_rating"
             app:layout_constraintTop_toBottomOf="@+id/et_star_rating" />
 
-        <EditText
-            android:id="@+id/et_ingredient_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="8dp"
-            android:hint="ingredient list:"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_feeds" />
+     <com.example.projecthomemaker.LinedEditTextView
+         android:id="@+id/et_ingredient_list"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="60dp"
+         android:hint="ingredient list:"
+         app:layout_constraintEnd_toEndOf="@+id/textView"
+         app:layout_constraintStart_toStartOf="@+id/textView"
+         app:layout_constraintTop_toBottomOf="@+id/et_feeds" />
 
-        <EditText
-            android:id="@+id/et_directions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:hint="Directions......"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_ingredient_list" />
+     <TextView
+         android:id="@+id/textView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="8dp"
+         android:layout_marginEnd="8dp"
+         android:text="Ingredient List"
+         app:layout_constraintBottom_toTopOf="@+id/et_ingredient_list"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.503"
+         app:layout_constraintStart_toStartOf="parent" />
+
+     <com.example.projecthomemaker.LinedEditTextView
+         android:id="@+id/et_directions"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="8dp"
+         android:layout_marginTop="88dp"
+         android:layout_marginEnd="8dp"
+         android:hint="Directions......"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/et_ingredient_list" />
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="8dp"
+         android:text="Directions"
+         app:layout_constraintBottom_toTopOf="@+id/et_directions"
+         app:layout_constraintEnd_toEndOf="@+id/et_directions"
+         app:layout_constraintStart_toStartOf="@+id/et_directions" />
 
         <Button
             android:id="@+id/nr_save_button"

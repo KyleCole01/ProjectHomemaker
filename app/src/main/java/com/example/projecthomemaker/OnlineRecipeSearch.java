@@ -33,20 +33,13 @@ public class OnlineRecipeSearch {
                 JSONArray dataJsonArray = dataObject.getJSONArray("recipes");
                 for(int i = 0;i <dataJsonArray.length();++i){
                     JSONObject recipeObject = dataJsonArray.getJSONObject(i);
-                    InputStream URLcontent = (InputStream) new URL(recipeObject.getString("image_url")).getContent();
-                    Drawable image = Drawable.createFromStream(URLcontent,recipeObject.getString("image_url"));
                     Recipe recipe = new Recipe(recipeObject);
-                    recipe.setImageDrawable(image);
 
 
                     onlineRecipeList.add(recipe);
                 }
 
             } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
                 e.printStackTrace();
             }
         return  onlineRecipeList;

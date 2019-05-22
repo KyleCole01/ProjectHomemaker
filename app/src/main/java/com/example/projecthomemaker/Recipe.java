@@ -1,21 +1,19 @@
 package com.example.projecthomemaker;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.Serializable;
 
-public class Recipe implements Serializable {
+public class Recipe implements Serializable, Comparable {
     private int id;
     private String name, directions, ingredientList,category, favorite,starRating, costRating, feedPerBatch;
     private String imageUrl, sourceUrl;
-    private Drawable imageDrawable;
 
     public String getFavorite() {
         return favorite;
+    }
+    public Recipe (String name){
+        this.name = name;
     }
 
     public void setFavorite(String favorite) {
@@ -32,13 +30,7 @@ public class Recipe implements Serializable {
         this.category = category;
     }
 
-    public Drawable getImageDrawable() {
-                return imageDrawable;
-    }
 
-    public void setImageDrawable(Drawable imageDrawable) {
-        this.imageDrawable = imageDrawable;
-    }
 
     public Recipe(JSONObject json){
         try{
@@ -50,6 +42,8 @@ public class Recipe implements Serializable {
             e.printStackTrace();
         }
     }
+
+
 
     public String getImageUrl() {
         return imageUrl;
@@ -129,5 +123,17 @@ public class Recipe implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if(o instanceof Recipe){
+            Recipe object = (Recipe) o;
+            //sort by name
+            return this.getName().compareTo(object.getName());
+            //sort by price
+
+        } else{
+        return 0;}
     }
 }
