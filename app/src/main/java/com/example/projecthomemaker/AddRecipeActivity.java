@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,11 +31,10 @@ import static android.os.Environment.DIRECTORY_DCIM;
 
 public class AddRecipeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText etName, etStarRating, etCostRating, etFeeds,  etIngredientList, etDirections;
-//    ImageView recipeImage;
     String name,category,ingredientList,directions,starRating, costRating, feeds;
     Button saveButton;
     Context context;
-    Bitmap bitmap;
+    public Snackbar snackbar;
 
     Spinner categorySpinner;
     Recipe savedRecipe;
@@ -82,12 +82,7 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //TODO: CHECK for valid recipe
-                    }
-                },2000);
+                checkRecipe();
 
                 name = etName.getText().toString();
                 ingredientList = etIngredientList.getText().toString();
@@ -134,6 +129,19 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
             }
         });
 
+    }
+
+    private void checkRecipe() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //TODO: CHECK for valid recipe
+
+                //TODO: SHOW SNACKBAR
+
+
+            }
+        },2000);
     }
 
     @Override

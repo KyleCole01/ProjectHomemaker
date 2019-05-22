@@ -38,7 +38,7 @@ public class RecipeValidatorTest {
     //checking ingredient list
     @Test
     public void recipeIngredientListValidator_hasNumbersInName_ReturnsTrue(){
-        assertTrue(RecipeValidator.isValidRecipeIngredientList("beef1"));
+        assertTrue(RecipeValidator.isValidRecipeIngredientList("beef1987"));
     }
     @Test
     public void recipeIngredientListValidator_EmptyString_Returns_False(){
