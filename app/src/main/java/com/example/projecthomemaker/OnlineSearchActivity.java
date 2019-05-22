@@ -1,7 +1,9 @@
 package com.example.projecthomemaker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,6 +22,8 @@ public class OnlineSearchActivity extends AppCompatActivity {
     ListAdapter searchListAdapter;
     ArrayList<Recipe> onlineRecipes;
     Context context;
+    LinearLayout recipeList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,8 @@ public class OnlineSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_online_search);
         searchText = findViewById(R.id.online_search_edit_text);
         searchButton = findViewById(R.id.online_search_button);
+        recipeList = findViewById(R.id.search_parent);
+
         context = this;
         //click search and return an arraylist of results
 
@@ -38,11 +46,28 @@ public class OnlineSearchActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                searchListAdapter = new ListAdapter(onlineRecipes);
-                                RecyclerView recyclerView = findViewById(R.id.online_search_recycler_view);
-                                recyclerView.setAdapter(searchListAdapter);
-                                LinearLayoutManager sampleLayoutManager = new LinearLayoutManager(context);
-                                recyclerView.setLayoutManager(sampleLayoutManager);
+                                for(int i = 0;i <onlineRecipes.size();i++){
+                                    final TextView tv = new TextView(context);
+                                    final Recipe recipe = onlineRecipes.get(i);
+                                    tv.setTextSize(20);
+                                    tv.setTextColor(getResources().getColor(android.R.color.black));
+                                    String recipename = recipe.getName().replace("&#8217;","");
+                                    tv.setText(recipename);
+
+                                    tv.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            // what do you want to do with the view
+                                            String url = recipe.getSourceUrl();
+                                            Intent i = new Intent(Intent.ACTION_VIEW);
+                                            i.setData(Uri.parse(url));
+                                            startActivity(i);
+                                        }
+                                    });
+                                    recipeList.addView(tv);
+                                }
+
+
                             }
                         });
 
