@@ -43,7 +43,6 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
     Spinner categorySpinner;
     Recipe savedRecipe;
     private static final int SELECT_PICTURE = 1;
-    //getting image to set as the imageview
     ImageView imageView;
 
     @Override
@@ -131,35 +130,16 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
                         savedRecipe = new Recipe(name,category,starRating,feeds,costRating,
                                 ingredientList,directions);
                         break;
-
-
-
                 }
                 saveImage(context,bitmap,(etName.getText().toString()).replace(" ","_"),".jpg");
-
                 RecipeDbDao.createRecipe(savedRecipe);
 
                 Intent recipeListIntent = new Intent(context,RecipeListActivity.class);
                 startActivity(recipeListIntent);
-//                 public Recipe(String name, String category, int starRating, int feedPerBatch, int costRating, String ingredientList, String directions)
-
 
             }
         });
 
-    }
-
-    private void checkRecipe() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //TODO: CHECK for valid recipe
-
-                //TODO: SHOW SNACKBAR
-
-
-            }
-        },2000);
     }
 
     @Override

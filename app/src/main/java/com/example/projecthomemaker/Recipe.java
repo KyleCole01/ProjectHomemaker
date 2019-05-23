@@ -1,7 +1,6 @@
 package com.example.projecthomemaker;
 
 import android.graphics.Bitmap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.Serializable;
@@ -32,8 +31,6 @@ public class Recipe implements Serializable, Comparable,JSONable {
         this.category = category;
     }
 
-
-
     public Recipe(JSONObject json){
         try{
             this.name = json.getString("title");
@@ -44,7 +41,6 @@ public class Recipe implements Serializable, Comparable,JSONable {
             e.printStackTrace();
         }
     }
-
 
     public Bitmap getRecipeImage() {
         return recipeImage;
@@ -138,29 +134,25 @@ public class Recipe implements Serializable, Comparable,JSONable {
     public int compareTo(Object o) {
         if(o instanceof Recipe){
             Recipe object = (Recipe) o;
-            //sort by name
+            //sort by name (default sort if no specific comparator used)
             return this.getName().compareTo(object.getName());
-            //sort by price
-
         } else{
-        return 0;}
+            return 0;
+        }
     }
 
-
-        @Override
-        public String toJsonString() {
-            try {
-                JSONObject json = new JSONObject();
-                json.put("name", this.name);
-                json.put("source_url", this.sourceUrl);
-                json.put("image_url", imageUrl);
-                return json.toString();
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return "";
-            }
+    //must be implemented due to the interface (will be utilizing with a future implication)
+    @Override
+    public String toJsonString() {
+        try {
+            JSONObject json = new JSONObject();
+            json.put("name", this.name);
+            json.put("source_url", this.sourceUrl);
+            json.put("image_url", imageUrl);
+            return json.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "";
         }
-
-
-
+    }
 }

@@ -1,7 +1,5 @@
 package com.example.projecthomemaker;
 
-import android.net.Uri;
-
 public class AppetizerRecipe extends Recipe {
     int howFilling;
 

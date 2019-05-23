@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
 
 public class RecipeDbDao {
@@ -58,37 +57,13 @@ public class RecipeDbDao {
             String directions = cursor.getString(index);
             index = cursor.getColumnIndexOrThrow(RecipeDbContract.RecipeEntry.COLUMN_FAVORITES);
             String favorite = cursor.getString(index);
-
-            //                 public Recipe(String name, String category, int starRating, int feedPerBatch, int costRating, String ingredientList, String directions)
+            //take the variables and create the recipe from the database
             Recipe recipe = new Recipe(name, category, starRating, feedPerBatch, costRating, ingredientList, directions);
-
             recipeList.add(recipe);
         }
         cursor.close();
 
-        //initial mock data
-/*        recipeList.add(new Recipe("Test Chicken 1","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 2","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 3","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 4","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 5","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 6","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 7","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 8","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 9","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 10","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 11","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 12","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 13","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 14","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 15","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 16","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 17","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 18","Dinner","3","2","4","chicken and ", "cook"));
-        recipeList.add(new Recipe("Test Chicken 19","Dinner","3","2","4","chicken and ", "cook"));
-        */
         return recipeList;
-
     }
 }
 

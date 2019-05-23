@@ -29,8 +29,7 @@ public class RecipeListActivity extends AppCompatActivity {
     ArrayList<Recipe> tempList;
     Intent navIntent;
 
-
-    //initial Oncreate
+    //initial onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,17 +78,13 @@ public class RecipeListActivity extends AppCompatActivity {
                         navIntent = new Intent(context, RecipeListActivity.class);
                         break;
                 }
-
-
                 drawerLayout.closeDrawers();
                 startActivity(navIntent);
-
                 return true;
             }
         });
-
-
     }
+
     //actionMenu code
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

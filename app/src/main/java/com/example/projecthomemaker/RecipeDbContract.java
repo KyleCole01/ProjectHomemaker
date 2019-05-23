@@ -4,9 +4,8 @@ import android.provider.BaseColumns;
 
 public class RecipeDbContract implements BaseColumns {
     public static class RecipeEntry implements BaseColumns {
-        //Title of DB
-        public final static String TABLE_NAME = "recipe_list";
 
+        public final static String TABLE_NAME = "recipe_list";
         public final static String COLUMN_NAME = "recipe_name";
         public final static String COLUMN_CATEGORY = "recipe_category";
         public final static String COLUMN_STAR_RATING = "star_rating";
@@ -15,7 +14,6 @@ public class RecipeDbContract implements BaseColumns {
         public final static String COLUMN_INGREDIENT_LIST = "ingredient_list";
         public final static String COLUMN_DIRECTIONS = "directions";
         public final static String COLUMN_FAVORITES = "favorite";
-
         public final static String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + _ID + " INTEGER PRIMARY KEY, " +
                 COLUMN_NAME + " TEXT, " +
                 COLUMN_CATEGORY + " TEXT, " +
@@ -25,7 +23,6 @@ public class RecipeDbContract implements BaseColumns {
                 COLUMN_INGREDIENT_LIST + " TEXT, " +
                 COLUMN_DIRECTIONS + " TEXT, " +
                 COLUMN_FAVORITES + " TEXT); ";
-
         public final static String SQL_DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
     }
 }

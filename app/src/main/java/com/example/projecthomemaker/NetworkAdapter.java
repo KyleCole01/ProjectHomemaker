@@ -29,7 +29,6 @@ public class NetworkAdapter {
         return httpRequest(stringUrl, GET, "");
     }
 
-    // only handles get and post requests right now
     public static String httpRequest(String stringUrl, String requestType, String body) {
         String result = "";
         InputStream stream = null;
@@ -72,7 +71,6 @@ public class NetworkAdapter {
             if (connection != null) {
                 connection.disconnect();
             }
-
             if (stream != null) {
                 try {
                     stream.close();
@@ -85,11 +83,10 @@ public class NetworkAdapter {
     }
 
     public static Bitmap getBitmapFromURL(final String urlString) {
-        Bitmap            result     = null;
-        InputStream stream     = null;
+        Bitmap result = null;
+        InputStream stream = null;
         HttpURLConnection connection = null;
         try {
-
             URL url = new URL(urlString);
             connection = (HttpURLConnection) url
                     .openConnection();
@@ -97,11 +94,9 @@ public class NetworkAdapter {
             connection.connect();
             InputStream input = connection.getInputStream();
             result = BitmapFactory.decodeStream(input);
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            // Close Stream and disconnect HTTPS connection.
             if (stream != null) {
                 try {
                     stream.close();
@@ -114,15 +109,5 @@ public class NetworkAdapter {
             }
         }
         return result;
-    }
-
-    public static Drawable LoadImageFromWebOperations(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "src name");
-            return d;
-        } catch (Exception e) {
-            return null;
-        }
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,31 +41,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
         sampleViewHolder.listTitleView.setText(data.getName());
         sampleViewHolder.listRatingView.setText(data.getCategory());
         sampleViewHolder.listItemImage.setImageBitmap(loadImageBitmap(sampleViewHolder.parentView.getContext(),(data.getName().replace(" ","_")),".jpg"));
-/*
-        switch(Integer.parseInt(data.getStarRating())){
-            case 0:
-                sampleViewHolder.listItemImage.setImageResource(R.drawable.no_stars);
-                break;
-            case 1:
-                sampleViewHolder.listItemImage.setImageResource(R.drawable.one_star);
-                break;
-            case 2:
-                sampleViewHolder.listItemImage.setImageResource(R.drawable.two_stars);
-                break;
-            case 3:
-                sampleViewHolder.listItemImage.setImageResource(R.drawable.three_stars);
-                break;
-            case 4:
-                sampleViewHolder.listItemImage.setImageResource(R.drawable.four_stars);
-                break;
-            case 5:
-                sampleViewHolder.listItemImage.setImageResource(R.drawable.five_stars);
-                break;
-
-
-
-        }
-*/
 
         sampleViewHolder.parentView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -74,26 +48,17 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
                 RecipeDbDao.deleteRecipe(data.getName());
                 entryData.remove(i);
                 notifyDataSetChanged();
-
-
                 return true;
             }
         });
-
-
-
 
                //reiterate all this through the object to place your items (image,names,id, etc.)
         sampleViewHolder.parentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo start an intent
                 Intent sampleIntent = new Intent(v.getContext(),AddRecipeActivity.class);
                 sampleIntent.putExtra(RecipeListActivity.TAG, data);
-                //..............
                 v.getContext().startActivity(sampleIntent);// can also use startActivityForResult(intent,requestCode)
-                //^ to start an intent from an onclick from outside of an activity.
-
             }
         });
     }
@@ -109,7 +74,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
         TextView listTitleView, listRatingView;
         View parentView;
         ImageView listItemImage;
-        //bind the datamembers of our viewholder to the items in the layout
+
+        //bind the data members of our viewHolder to the items in the layout
         public SampleViewHolder(@NonNull View itemView) {
             super(itemView);
             listTitleView = itemView.findViewById(R.id.list_item_title);
@@ -138,5 +104,4 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
         }
         return bitmap;
     }
-
 }

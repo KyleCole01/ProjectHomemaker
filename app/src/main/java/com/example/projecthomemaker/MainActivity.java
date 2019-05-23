@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.start();
                 mediaPlayer.setLooping(false);
                 startActivity(intent);
-//                public Recipe(String name, String category, int starRating, int feedPerBatch,int costRating,String ingredientList,String directions)
-
             }
         });
     }
