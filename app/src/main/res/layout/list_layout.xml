@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_list_layout"
     android:layout_width="match_parent"
-    android:layout_height="150sp">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/list_item_image"
-        android:layout_width="98dp"
-        android:layout_height="67dp"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
         android:layout_margin="20sp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         tools:context=".AddRecipeActivity">
 
-       <!-- <ImageView
+        <ImageView
             android:id="@+id/nr_imageview"
             android:layout_width="200sp"
             android:layout_height="200sp"
@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />-->
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/et_name"
@@ -38,7 +38,7 @@
             android:padding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/nr_imageview"/>
 
         <EditText
             android:id="@+id/et_star_rating"

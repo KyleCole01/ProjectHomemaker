@@ -1,5 +1,7 @@
 package com.example.projecthomemaker;
 
+import android.graphics.Bitmap;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.Serializable;
@@ -8,7 +10,7 @@ public class Recipe implements Serializable, Comparable,JSONable {
     private int id;
     private String name, directions, ingredientList,category, favorite,starRating, costRating, feedPerBatch;
     private String imageUrl, sourceUrl;
-
+    private Bitmap recipeImage;
     public String getFavorite() {
         return favorite;
     }
@@ -44,6 +46,13 @@ public class Recipe implements Serializable, Comparable,JSONable {
     }
 
 
+    public Bitmap getRecipeImage() {
+        return recipeImage;
+    }
+
+    public void setRecipeImage(Bitmap recipeImage) {
+        this.recipeImage = recipeImage;
+    }
 
     public String getImageUrl() {
         return imageUrl;

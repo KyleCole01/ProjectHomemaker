@@ -8,4 +8,5 @@ public class NameComparator implements Comparator<Recipe> {
         return o1.getName().compareTo(o2.getName());
 
     }
+
 }

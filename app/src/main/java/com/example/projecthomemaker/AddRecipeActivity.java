@@ -3,6 +3,7 @@ package com.example.projecthomemaker;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -25,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.ArrayList;
 
 import static android.os.Environment.DIRECTORY_DCIM;
@@ -35,17 +37,21 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
     Button saveButton;
     Context context;
     public Snackbar snackbar;
+    Uri thumbnail;
+    Bitmap bitmap;
 
     Spinner categorySpinner;
     Recipe savedRecipe;
     private static final int SELECT_PICTURE = 1;
     //getting image to set as the imageview
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
         etName = findViewById(R.id.et_name);
+        imageView = findViewById(R.id.nr_imageview);
         etStarRating = findViewById(R.id.et_star_rating);
         etCostRating = findViewById(R.id.et_cost_rating);
         etFeeds = findViewById(R.id.et_feeds);
@@ -63,6 +69,7 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
             etFeeds.setText(editRecipe.getFeedPerBatch());
             etIngredientList.setText(editRecipe.getIngredientList());
             etDirections.setText(editRecipe.getDirections());
+            imageView.setImageBitmap(loadImageBitmap(context,(editRecipe.getName()).replace(" ", "_"),".jpg"));
 
         }
 
@@ -73,7 +80,15 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
         categorySpinner.setOnItemSelectedListener(this);
         categorySpinner.setAdapter(adapter);
 
-
+        //imageview code
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent getPic = new Intent(Intent.ACTION_GET_CONTENT);
+                getPic.setType("image/*");
+                startActivityForResult(getPic,SELECT_PICTURE);
+            }
+        });
 
 
 
@@ -120,7 +135,10 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
 
 
                 }
+                saveImage(context,bitmap,(etName.getText().toString()).replace(" ","_"),".jpg");
+
                 RecipeDbDao.createRecipe(savedRecipe);
+
                 Intent recipeListIntent = new Intent(context,RecipeListActivity.class);
                 startActivity(recipeListIntent);
 //                 public Recipe(String name, String category, int starRating, int feedPerBatch, int costRating, String ingredientList, String directions)
@@ -154,4 +172,42 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
 
     }
 
+    public void saveImage(Context context, Bitmap bitmap, String name, String extension){
+        name = name + "." + extension;
+        FileOutputStream fileOutputStream;
+        try {
+            fileOutputStream= context.openFileOutput(name, Context.MODE_PRIVATE);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90,fileOutputStream);
+            fileOutputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public Bitmap loadImageBitmap(Context context,String name,String extension){
+        name = name + "." + extension;
+        FileInputStream fileInputStream;
+        Bitmap bitmap = null;
+        try{
+            fileInputStream = context.openFileInput(name);
+            bitmap = BitmapFactory.decodeStream(fileInputStream);
+            fileInputStream.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == SELECT_PICTURE && resultCode == RESULT_OK && data != null){
+            thumbnail = data.getData();
+            imageView.setImageURI(thumbnail);
+            bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), thumbnail);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

@@ -41,16 +41,11 @@ public class RecipeListActivity extends AppCompatActivity {
         context = this;
         tempList = new ArrayList<>();
 
-
-
-
-
-
-
         //drawerLayout code for nav menu
         drawerLayout = findViewById(R.id.drawer_layout_view);
         toolbar.setTitle(getTitle());
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar,R.string.open_drawer,R.string.close_drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this,drawerLayout, toolbar,R.string.open_drawer,R.string.close_drawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -62,15 +57,13 @@ public class RecipeListActivity extends AppCompatActivity {
         final LinearLayoutManager sampleLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(sampleLayoutManager);
 
-        //todo handle on item selected on nav menu (currently broken, will be implementing after grading due to amount of polish I want to do with it)
+       //navigation menu : will navigate to any page in the app
         final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 switch(menuItem.getItemId()) {
-
-
                     case R.id.nav_add_recipe:
                         navIntent = new Intent(context, AddRecipeActivity.class);
                         break;
@@ -117,7 +110,7 @@ public class RecipeListActivity extends AppCompatActivity {
                sampleListAdapter.notifyDataSetChanged();
                break;
            case R.id.app_bar_sort_name:
-               recipeList.sort(null);
+               recipeList.sort(new NameComparator());
                sampleListAdapter.notifyDataSetChanged();
                break;
            case R.id.app_bar_sort_star:

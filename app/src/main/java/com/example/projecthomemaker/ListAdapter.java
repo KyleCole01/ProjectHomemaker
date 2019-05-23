@@ -1,6 +1,9 @@
 package com.example.projecthomemaker;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHolder> {
@@ -37,6 +41,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
         setEnterAnimation(sampleViewHolder.parentView,i);
         sampleViewHolder.listTitleView.setText(data.getName());
         sampleViewHolder.listRatingView.setText(data.getCategory());
+        sampleViewHolder.listItemImage.setImageBitmap(loadImageBitmap(sampleViewHolder.parentView.getContext(),(data.getName().replace(" ","_")),".jpg"));
+/*
         switch(Integer.parseInt(data.getStarRating())){
             case 0:
                 sampleViewHolder.listItemImage.setImageResource(R.drawable.no_stars);
@@ -60,6 +66,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
 
 
         }
+*/
 
         sampleViewHolder.parentView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -118,4 +125,18 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
             lastPosition = position;
         }
     }
+    public Bitmap loadImageBitmap(Context context, String name, String extension){
+        name = name + "." + extension;
+        FileInputStream fileInputStream;
+        Bitmap bitmap = null;
+        try{
+            fileInputStream = context.openFileInput(name);
+            bitmap = BitmapFactory.decodeStream(fileInputStream);
+            fileInputStream.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
 }
