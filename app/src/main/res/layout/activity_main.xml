@@ -13,7 +13,7 @@
         android:layout_height="200dp"
         android:background="@color/colorPrimaryDark"
         android:scaleType="fitCenter"
-        android:src="@drawable/cooking_robot"
+        android:src="@drawable/swedish_chef"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,15 +23,15 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="Recipes"
+        android:layout_width="126dp"
+        android:layout_height="49dp"
         android:background="@color/colorPrimary"
+        android:text="Recipes"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/button_recipelist"
         app:layout_constraintEnd_toEndOf="@+id/button_recipelist"
-        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="@+id/button_recipelist" />
 
    <!-- <com.example.projecthomemaker.TimerView
