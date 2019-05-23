@@ -4,29 +4,21 @@
     <group android:checkableBehavior="single">
         <item
             android:checkable="true"
-            android:id="@+id/nav_category_general"
-            android:title="All" />
+            android:id="@+id/nav_main"
+            android:title="Landing Page" />
 
         <item
             android:checkable="true"
-            android:id="@+id/nav_category_breakfast"
-            android:title="Breakfast" />
+            android:id="@+id/nav_recipe_list"
+            android:title="Recipe List" />
         <item
             android:checkable="true"
-            android:id="@+id/nav_category_lunch"
-            android:title="Lunch" />
+            android:id="@+id/nav_add_recipe"
+            android:title="Add Recipe" />
         <item
             android:checkable="true"
-            android:id="@+id/nav_category_appetizer"
-            android:title="Appetizers" />
-        <item
-            android:checkable="true"
-            android:id="@+id/nav_category_dinner"
-            android:title="Dinners" />
-        <item
-            android:checkable="true"
-            android:id="@+id/nav_category_dessert"
-            android:title="Desserts" />
+            android:id="@+id/nav_online_search"
+            android:title="Search for ideas online" />
     </group>
 
 

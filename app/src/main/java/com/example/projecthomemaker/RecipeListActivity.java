@@ -27,6 +27,7 @@ public class RecipeListActivity extends AppCompatActivity {
     ListAdapter sampleListAdapter;
     public static final String TAG = "receive";
     ArrayList<Recipe> tempList;
+    Intent navIntent;
 
 
     //initial Oncreate
@@ -46,115 +47,54 @@ public class RecipeListActivity extends AppCompatActivity {
 
 
 
-/*
         //drawerLayout code for nav menu
         drawerLayout = findViewById(R.id.drawer_layout_view);
         toolbar.setTitle(getTitle());
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar,R.string.open_drawer,R.string.close_drawer);
         drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();*/
+        toggle.syncState();
 
 
         //list adapter code
         sampleListAdapter = new ListAdapter(recipeList);
         RecyclerView recyclerView = findViewById(R.id.recycler_view_layout);
         recyclerView.setAdapter(sampleListAdapter);
-        LinearLayoutManager sampleLayoutManager = new LinearLayoutManager(this);
+        final LinearLayoutManager sampleLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(sampleLayoutManager);
 
         //todo handle on item selected on nav menu (currently broken, will be implementing after grading due to amount of polish I want to do with it)
-       /* final NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                tempList = new ArrayList<>();
-                switch(menuItem.getItemId()){
+
+                switch(menuItem.getItemId()) {
 
 
-                    case R.id.nav_category_appetizer:
-                        recipeList = RecipeDbDao.readAllRecipes();
-
-                        for(Recipe item:recipeList){
-                            if(item instanceof AppetizerRecipe){
-                                tempList.add(item);
-                            }
-
-                        }
-                        recipeList = tempList;
-                        sampleListAdapter.notifyDataSetChanged();
-                        navigationView.clearFocus();
-                    break;
-
-                    case R.id.nav_category_breakfast:
-                        for(Recipe item:recipeList){
-                            if(item instanceof BreakfastRecipe){
-                                tempList.add(item);
-
-                            }
-                        }
-                        recipeList = tempList;
-                        sampleListAdapter.notifyDataSetChanged();
-
+                    case R.id.nav_add_recipe:
+                        navIntent = new Intent(context, AddRecipeActivity.class);
                         break;
 
-                    case R.id.nav_category_dessert:
-                        for(Recipe item:recipeList){
-                            if(item.getCategory().equals("Dessert")){
-                                tempList.add(item);
-                                sampleListAdapter.notifyDataSetChanged();
-
-                            }
-                        }
+                    case R.id.nav_main:
+                        navIntent = new Intent(context, MainActivity.class);
                         break;
-                    case R.id.nav_category_dinner:
-                        for(Recipe item:recipeList){
-                            if(item.getCategory().equals("Dinner")){
-                                tempList.add(item);
-                                sampleListAdapter.notifyDataSetChanged();
 
-                            }
-                        }
+                    case R.id.nav_online_search:
+                        navIntent = new Intent(context, OnlineSearchActivity.class);
                         break;
-                    case R.id.nav_category_general:
-                        for(Recipe item:recipeList){
-                                tempList.add(item);
-                                sampleListAdapter.notifyDataSetChanged();
-
-                        }
-                        break;
-                    case R.id.nav_category_lunch:
-
-                        for(Recipe item:recipeList){
-                            if(item.getCategory().equals("Lunch")){
-                                tempList.add(item);
-                                sampleListAdapter.notifyDataSetChanged();
-
-                            }
-                        }
+                    case R.id.nav_recipe_list:
+                        navIntent = new Intent(context, RecipeListActivity.class);
                         break;
                 }
 
 
+                drawerLayout.closeDrawers();
+                startActivity(navIntent);
 
                 return true;
             }
         });
 
-
-
-
-
-*/
-
-        //add new recipe button code
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent newRecipeIntent = new Intent(context, AddRecipeActivity.class);
-                startActivity(newRecipeIntent);
-            }
-        });
 
     }
     //actionMenu code
@@ -168,11 +108,22 @@ public class RecipeListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
        switch(item.getItemId()) {
-           case R.id.app_bar_search_online:
-               // launch searching intent
-               Intent onlineSearch = new Intent(context, OnlineSearchActivity.class);
-               startActivity(onlineSearch);
-               return true;
+           case R.id.app_bar_sort_category:
+               recipeList.sort(new CategoryComparator());
+               sampleListAdapter.notifyDataSetChanged();
+               break;
+           case R.id.app_bar_sort_cost:
+               recipeList.sort(new CostRatingComparator());
+               sampleListAdapter.notifyDataSetChanged();
+               break;
+           case R.id.app_bar_sort_name:
+               recipeList.sort(null);
+               sampleListAdapter.notifyDataSetChanged();
+               break;
+           case R.id.app_bar_sort_star:
+               recipeList.sort(new StarRatingComparator());
+               sampleListAdapter.notifyDataSetChanged();
+               break;
        }
         return super.onOptionsItemSelected(item);
     }
