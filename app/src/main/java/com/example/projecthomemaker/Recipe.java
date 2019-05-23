@@ -4,7 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.Serializable;
 
-public class Recipe implements Serializable, Comparable {
+public class Recipe implements Serializable, Comparable,JSONable {
     private int id;
     private String name, directions, ingredientList,category, favorite,starRating, costRating, feedPerBatch;
     private String imageUrl, sourceUrl;
@@ -136,4 +136,22 @@ public class Recipe implements Serializable, Comparable {
         } else{
         return 0;}
     }
+
+
+        @Override
+        public String toJsonString() {
+            try {
+                JSONObject json = new JSONObject();
+                json.put("name", this.name);
+                json.put("source_url", this.sourceUrl);
+                json.put("image_url", imageUrl);
+                return json.toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return "";
+            }
+        }
+
+
+
 }

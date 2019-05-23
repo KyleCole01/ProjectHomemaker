@@ -62,7 +62,7 @@ public class RecipeListActivity extends AppCompatActivity {
         LinearLayoutManager sampleLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(sampleLayoutManager);
 
-        //todo handle on item selected on nav menu (currently broken)
+        //todo handle on item selected on nav menu (currently broken, will be implementing after grading due to amount of polish I want to do with it)
        /* final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

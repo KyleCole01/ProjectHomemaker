@@ -2,6 +2,7 @@ package com.example.projecthomemaker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimatedImageDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         context = this;
         RecipeDbDao.initializeInstance(this);
         button = findViewById(R.id.button_recipelist);
+        ((AnimatedImageDrawable)button.getDrawable()).start();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
