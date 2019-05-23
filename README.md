@@ -1,6 +1,8 @@
 # ProjectHomemaker
 
 This is an app for creating and storing recipes. The recipe will have a Name, Category, Star Rating, Serving, Cost Rating, Ingredient List, and Directions
+
+
 What was implemented in this application as far as from Unit 2 (and some before):
 
   1.)Inheritance - There is one Recipe class and several sub classes (BreakfastRecipe) which will inherit from the main
