@@ -41,7 +41,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
         sampleViewHolder.listTitleView.setText(data.getName());
         sampleViewHolder.listRatingView.setText(data.getCategory());
         sampleViewHolder.listItemImage.setImageBitmap(loadImageBitmap(sampleViewHolder.parentView.getContext(),(data.getName().replace(" ","_")),".jpg"));
-
+        sampleViewHolder.starRatingView.setText("Stars: " + data.getStarRating());
+        sampleViewHolder.costRatingView.setText("Cost: "+ data.getCostRating());
         sampleViewHolder.parentView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -71,7 +72,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
     //our connection to the views in the layout
     class SampleViewHolder extends RecyclerView.ViewHolder{
 
-        TextView listTitleView, listRatingView;
+        TextView listTitleView, listRatingView, starRatingView,costRatingView;
         View parentView;
         ImageView listItemImage;
 
@@ -82,6 +83,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.SampleViewHold
             listRatingView = itemView.findViewById(R.id.list_item_category);
             listItemImage = itemView.findViewById(R.id.list_item_image);
             parentView = itemView.findViewById(R.id.parent_list_layout);
+            starRatingView = itemView.findViewById(R.id.list_item_star);
+            costRatingView = itemView.findViewById(R.id.list_item_cost);
         }
     }
     private void setEnterAnimation(View viewToAnimate, int position){
