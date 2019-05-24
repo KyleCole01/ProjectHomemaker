@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OnlineSearchActivity">
@@ -19,6 +20,8 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/online_search_button"
             android:text="Search"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="#ffffff"
             android:layout_marginStart="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

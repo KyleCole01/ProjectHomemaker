@@ -34,6 +34,7 @@ import static android.os.Environment.DIRECTORY_DCIM;
 public class AddRecipeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText etName, etStarRating, etCostRating, etFeeds,  etIngredientList, etDirections;
     String name,category,ingredientList,directions,starRating, costRating, feeds;
+    String spinnerprefill;
     Button saveButton;
     Context context;
     Uri thumbnail;
@@ -57,6 +58,7 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
         etDirections = findViewById(R.id.et_directions);
         saveButton = findViewById(R.id.nr_save_button);
         context = this;
+        spinnerprefill = "";
         Intent receiveIntent = getIntent();
         if ((receiveIntent.getSerializableExtra(RecipeListActivity.TAG)!= null)){
             Recipe editRecipe = (Recipe) receiveIntent.getSerializableExtra(RecipeListActivity.TAG);
@@ -67,6 +69,10 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
             etIngredientList.setText(editRecipe.getIngredientList());
             etDirections.setText(editRecipe.getDirections());
             imageView.setImageBitmap(loadImageBitmap(context,(editRecipe.getName()).replace(" ", "_"),".jpg"));
+            categorySpinner.setHapticFeedbackEnabled(true);
+            if(editRecipe != null){
+            spinnerprefill = editRecipe.getCategory();}
+
 
         }
 
@@ -74,7 +80,27 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,R.array.category,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setOnItemSelectedListener(this);
+        categorySpinner.setHapticFeedbackEnabled(true);
         categorySpinner.setAdapter(adapter);
+
+        switch (spinnerprefill){
+            case "Breakfast":
+                categorySpinner.setSelection(0);
+                break;
+            case "Lunch":
+                categorySpinner.setSelection(1);
+                break;
+            case "Dinner":
+                categorySpinner.setSelection(2);
+                break;
+            case "Appetizer":
+                categorySpinner.setSelection(3);
+                break;
+            case "Dessert":
+                categorySpinner.setSelection(4);
+            default:
+                categorySpinner.setSelection(2);
+        }
 
         //imageview code
         imageView.setOnClickListener(new View.OnClickListener() {
