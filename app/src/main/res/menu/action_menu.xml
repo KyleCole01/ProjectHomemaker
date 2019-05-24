@@ -4,22 +4,22 @@
 
 
     <item
-        android:title="Sort By Name"
+        android:title="Sort By Name (A to Z)"
         android:id="@+id/app_bar_sort_name"
         android:icon="@drawable/online_search"
         app:showAsAction="never"        />
     <item
-        android:title="Sort by Cost Rating"
+        android:title="Sort by Cost Rating (H to L)"
         android:id="@+id/app_bar_sort_cost"
         android:icon="@drawable/online_search"
         app:showAsAction="never"        />
     <item
-        android:title="Sort by Star Rating"
+        android:title="Sort by Star Rating (H to L)"
         android:id="@+id/app_bar_sort_star"
         android:icon="@drawable/online_search"
         app:showAsAction="never"        />
     <item
-        android:title="Sort by Category"
+        android:title="Sort by Category (A to Z)"
         android:id="@+id/app_bar_sort_category"
         android:icon="@drawable/online_search"
         app:showAsAction="never"        />
