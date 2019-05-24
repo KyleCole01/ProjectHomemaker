@@ -36,10 +36,8 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
     String name,category,ingredientList,directions,starRating, costRating, feeds;
     Button saveButton;
     Context context;
-    public Snackbar snackbar;
     Uri thumbnail;
     Bitmap bitmap;
-
     Spinner categorySpinner;
     Recipe savedRecipe;
     private static final int SELECT_PICTURE = 1;
@@ -72,7 +70,6 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
 
         }
 
-
         //spinner code
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,R.array.category,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -89,15 +86,10 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
             }
         });
 
-
-
-
         //saving recipe as whatever inherited type it is
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                checkRecipe();
-
                 name = etName.getText().toString();
                 ingredientList = etIngredientList.getText().toString();
                 directions = etDirections.getText().toString();
@@ -133,13 +125,10 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
                 }
                 saveImage(context,bitmap,(etName.getText().toString()).replace(" ","_"),".jpg");
                 RecipeDbDao.createRecipe(savedRecipe);
-
                 Intent recipeListIntent = new Intent(context,RecipeListActivity.class);
                 startActivity(recipeListIntent);
-
             }
         });
-
     }
 
     @Override
@@ -149,7 +138,6 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     public void saveImage(Context context, Bitmap bitmap, String name, String extension){
